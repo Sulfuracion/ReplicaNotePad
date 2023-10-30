@@ -19,8 +19,12 @@ import java.io.File;
 import java.io.FileWriter;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -33,6 +37,32 @@ public class EditorTexto extends javax.swing.JFrame {
      */
     public EditorTexto() {
         initComponents();
+    }
+    public void panelGuardar(){
+           Object[] options = {"Si",
+                    "No",
+                    "Cancelar"
+   };
+    int n = JOptionPane.showOptionDialog( Nuevo,
+    "¿Desea guardar el archivo?"
+    + "",
+    "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[0]);
+  
+    if (n == JOptionPane.YES_OPTION){
+        JFileChooser jf= new JFileChooser();
+         FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+        jf.setFileFilter(filter);
+        jf.showSaveDialog(AreaTexto);
+    }else if(n == JOptionPane.NO_OPTION){
+        AreaTexto.setText(" ");
+    }else if(n == JOptionPane.CANCEL_OPTION){
+        
+    }
     }
 
     /**
@@ -85,9 +115,19 @@ public class EditorTexto extends javax.swing.JFrame {
         Archivo.add(Nuevo);
 
         Abrir.setText("Abrir");
+        Abrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirActionPerformed(evt);
+            }
+        });
         Archivo.add(Abrir);
 
         Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarActionPerformed(evt);
+            }
+        });
         Archivo.add(Guardar);
 
         Cerrar.setText("Cerrar");
@@ -171,25 +211,31 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_TextoColorAmarilloActionPerformed
 
     private void NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevoActionPerformed
-     javax.swing.JFileChooser jF1 = new javax.swing.JFileChooser();
 
-
-     String ruta = "G:\\2DAM\\INTERFACES\\EditorTexto";
-     try{
-         if(jF1.showSaveDialog(null)== jF1.APPROVE_OPTION){
-
-             ruta= jF1.getSelectedFile().getAbsolutePath();
-
-            //Aqui creas el archivo 
-         }
-     }
-         catch(Exception ex){
-
-              javax.swing.JOptionPane.showMessageDialog(this, "No se pudo crear el archivo ");
-        }
+         Object[] options = {"Si",
+                    "No",
+                    "Cancelar"
+   };
+    int n = JOptionPane.showOptionDialog( Nuevo,
+    "¿Desea guardar el archivo?"
+    + "",
+    "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[0]);
+  
+    if (n == JOptionPane.YES_OPTION){
+        JFileChooser jf= new JFileChooser();
+         FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+        jf.setFileFilter(filter);
+        jf.showSaveDialog(AreaTexto);
+    }else if(n == JOptionPane.NO_OPTION){
+        AreaTexto.setText(" ");
+    }else if(n == JOptionPane.CANCEL_OPTION){
         
-        
-       
+    }
     }//GEN-LAST:event_NuevoActionPerformed
 
     private void FuenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FuenteActionPerformed
@@ -202,8 +248,82 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_FuenteActionPerformed
 
     private void CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CerrarActionPerformed
+                 Object[] options = {"Si",
+                    "No",
+                    "Cancelar"
+   };
+    int n = JOptionPane.showOptionDialog( Nuevo,
+    "¿Desea guardar el archivo?"
+    + "",
+    "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[0]);
+  
+    if (n == JOptionPane.YES_OPTION){
+        JFileChooser jf= new JFileChooser();
+         FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+        jf.setFileFilter(filter);
+        jf.showSaveDialog(AreaTexto);
+    }else if(n == JOptionPane.NO_OPTION){
+        AreaTexto.setText(" ");
+    }else if(n == JOptionPane.CANCEL_OPTION){
+    }
         System.exit(0);
     }//GEN-LAST:event_CerrarActionPerformed
+
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
+        JFileChooser jf= new JFileChooser();
+         FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+        jf.setFileFilter(filter);
+        jf.showSaveDialog(AreaTexto);
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
+        
+        if(AreaTexto.getText().length()==0){//si no hay texto
+            JFileChooser jf= new JFileChooser();
+            FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+            jf.setFileFilter(filter);
+            jf.showOpenDialog(AreaTexto);
+        }else{
+            Object[] options = {"Si",
+                "No",
+                "Cancelar"
+            };
+            int n = JOptionPane.showOptionDialog( Nuevo,
+             "¿Desea guardar el archivo?"
+             + "",
+             "",
+    JOptionPane.YES_NO_CANCEL_OPTION,
+    JOptionPane.QUESTION_MESSAGE,
+    null,
+    options,
+    options[0]);
+  
+    if (n == JOptionPane.YES_OPTION){
+        JFileChooser jf= new JFileChooser();
+         FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+        jf.setFileFilter(filter);
+        jf.showSaveDialog(AreaTexto);
+    }else if(n == JOptionPane.NO_OPTION){
+        AreaTexto.setText(" ");
+        JFileChooser jf= new JFileChooser();
+            FileFilter filter = new FileNameExtensionFilter("TXT file", "TXT");
+            jf.setFileFilter(filter);
+            jf.showOpenDialog(AreaTexto);
+    }else if(n == JOptionPane.CANCEL_OPTION){
+        
+    }
+              
+           
+     
+            
+        }
+        
+    }//GEN-LAST:event_AbrirActionPerformed
 
     /**
      * @param args the command line arguments
